@@ -22,7 +22,7 @@ class DespesasController extends Controller
     public function index()
     {
         //
-        return view('despesa_index');
+        return view('despesa.despesa_index');
 
     }
 
@@ -576,7 +576,7 @@ class DespesasController extends Controller
                             );
             }
 
-            return view('despesa_origem_servico', $dados);
+            return view('despesa.despesa_origem_servico', $dados);
 
         }
 

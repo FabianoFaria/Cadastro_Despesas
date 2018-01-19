@@ -37,6 +37,8 @@ Route::post('/customLogin','CustomLoginController@authenticate');
 
 Route::group(array('before' =>'auth'), function()
 {
+	Route::resource('orcamentos','OrcamentoController');
+
 	Route::resource('despesas','DespesasController');
 
 	Route::post('search', 'DespesasController@procurar');

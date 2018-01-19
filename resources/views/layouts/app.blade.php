@@ -15,6 +15,7 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Scripts -->
    <!--  <script type="text/javascript" src="/js/jquery.js"></script>

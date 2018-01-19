@@ -9,23 +9,37 @@
 
                 <div class="panel-body">
                     
-
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
+
                             <p>Você está logado!</p>
 
                             <hr>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            
                             <p>
-                                <a href="{{ url('/despesas') }}">Cadastradar despesa!</a>
+                               <i class="fa fa-credit-card-alt fa-3x" aria-hidden="true"></i> <a href="{{ url('/despesas') }}">Cadastradar despesa!</a>
                             </p>
 
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/despesas/') }}">
+                            <!-- <form class="form-horizontal" role="form" method="POST" action="{{ url('/despesas/') }}">
 
-
-
-
-                            </form>
+                            </form> -->
                         </div>
+
+                        <div class="col-md-6">
+
+                            <p>
+                                <i class="fa fa-file-text fa-3x" aria-hidden="true"></i><a href="{{ url('/orcamentos') }}">Status dos orçamentos!</a>
+                            </p>
+
+
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-12">
