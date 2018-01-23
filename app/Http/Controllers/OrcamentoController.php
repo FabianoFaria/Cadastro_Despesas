@@ -99,7 +99,7 @@ class OrcamentoController extends Controller
                                                     LEFT JOIN tipo t on t.Tipo_ID = op.Status_ID
                                                     INNER JOIN tipo fc ON fc.Tipo_ID = op.Forma_Pagamento_ID
                                                     WHERE op.Workflow_ID = ? and op.Situacao_ID = 1
-                                                    GROUP BY op.Proposta_ID, op.Workflow_ID, op.Titulo, op.Data_Cadastro, op.Usuario_Cadastro_ID, u.Nome, op.Status_ID
+                                                    GROUP BY op.Proposta_ID, op.Workflow_ID, op.Titulo, op.Data_Cadastro, op.Usuario_Cadastro_ID, u.Nome, op.Status_ID, t.Descr_Tipo, ow.Situacao_ID, fc.Descr_Tipo, fc.Tipo_Auxiliar
                                                      ', [$workflowID]);
 
     
