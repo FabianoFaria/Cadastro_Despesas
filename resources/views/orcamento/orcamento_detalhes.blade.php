@@ -19,7 +19,10 @@
 						</p>
 						<p>
 							Título: {{ $dadosOrcamentos[0]['orcamento']->Titulo }}
+
+							<a href="{{ URL::to('/orcamentos') }}" class="btn btn-primary pull-right">Voltar</a>
 						</p>
+
 					</div>
 
 					<div class="panel-body">
@@ -130,7 +133,7 @@
 					                        				@if($produto->Pagamento_Prestador == 1 )
 
 					                        					<tr>
-					                        						
+
 						                        					<td>
 						                        						Produto : {{ $produto->Descricao_Produto }}
 						                        					</td>

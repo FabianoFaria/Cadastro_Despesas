@@ -10,7 +10,15 @@
 
 				<div class="panel panel-default">
 
-					<div class="panel-heading">Situação dos últimos orçamentos</div>
+					<div class="panel-heading" style="height: 70px;">
+
+						Situação dos últimos orçamentos
+						<!-- <form class="navbar-form navbar-right">
+								
+							<input class="form-control" type="text" name="numeroOrcamento" placeholder="Procurar número orçamento...">
+						</form> -->
+						
+					</div>
 
 					<div class="panel-body">
 
