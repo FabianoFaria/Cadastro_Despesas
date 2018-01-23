@@ -54,10 +54,10 @@
 
 	                            			<tr>
 	                            				<td>
-				                        			{{ $orcamento['orcamento']->Workflow_ID }}
+				                        			<a href="{{ URL::to('/orcamentos/'.$orcamento['orcamento']->Workflow_ID) }}" class=""> {{ $orcamento['orcamento']->Workflow_ID }} </a>
 				                        		</td>
 				                        		<td>
-				                        			{{ $orcamento['orcamento']->Titulo }}
+				                        			<a href="{{ URL::to('/orcamentos/'.$orcamento['orcamento']->Workflow_ID) }}" class=""> {{ $orcamento['orcamento']->Titulo }} </a>
 				                        		</td>
 				                        		<td style="background-color:{{ $orcamento['situacaoCor'] }};">
 				                        			{{ $orcamento['orcamento']->Descr_Tipo }}

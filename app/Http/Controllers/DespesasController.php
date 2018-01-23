@@ -90,12 +90,7 @@ class DespesasController extends Controller
 
             $idUsuario          = $user->Cadastro_ID;
 
-            //ADICIONA A DESPESA NA TABELA PRÓPRIA DE DESPESAS CADASTRADAS PELOS TÉCNICOS
-
-            $cadastroDespesa    = DB::insert('INSERT INTO despesas_atendimento 
-                                           (Descricao_Produto, Quantidade, Valor_Produto, Observacao_Despesa,
-                                           Usuario_Cadastro_ID, Origem_Despesa, tipo_origem_despesa) 
-                                           VALUES (?, ?, ?, ?, ?, ?, ?)', [ $despesa, $quantidade, $valor, $observacao, $idUsuario, $id_origem, $origem]);
+            
 
             //ADICIONA A DESPESA NA TABELA DE PRODUTOS DO CHAMADO GERADO PELO ORÇAMENTO OU SÓ PELO CHAMADO
 
@@ -105,6 +100,16 @@ class DespesasController extends Controller
                                                 (?,?,?,?,?,?,?,?,?,?,?,?,?)
                                                 ', [$chamada, 0, $quantidade, $valor, 0, 1, 1, 0, 0, 1, $data_Cadastro, $idUsuario, $observacao]);
 
+            $idDespesaTemp          = DB::getPdo()->lastInsertId();
+
+            //ADICIONA A DESPESA NA TABELA PRÓPRIA DE DESPESAS CADASTRADAS PELOS TÉCNICOS
+
+            $cadastroDespesa        = DB::insert('INSERT INTO despesas_atendimento 
+                                           (Descricao_Produto, Despesa_ID_Relacionado, Quantidade, Valor_Produto, Observacao_Despesa,
+                                           Usuario_Cadastro_ID, Origem_Despesa, tipo_origem_despesa) 
+                                           VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [ $despesa, $idDespesaTemp, $quantidade, $valor, $observacao, $idUsuario, $id_origem, $origem]);
+
+            //var_dump($idDespesa);
             //dd($cadastroDespesa);
 
             /*
