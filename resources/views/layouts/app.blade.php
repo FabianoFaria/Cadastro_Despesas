@@ -18,16 +18,17 @@
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Scripts -->
-   <!--  <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/jquery.number.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <!-- <script type="text/javascript" src="/js/jquery.number.js"></script>
      <script type="text/javascript" src="/js/app.js"></script>
-   <script type="text/javascript" src="/js/despesa.js"></script> --> 
+   <script type="text/javascript" src="/js/despesa.js"></script>  -->
 
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
+
     </script>
 </head>
 <body>

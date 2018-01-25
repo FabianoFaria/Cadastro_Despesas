@@ -38,7 +38,6 @@ class OrcamentoController extends Controller
 
         if(! empty($orçamentos)){
             
-
             foreach ($orçamentos as $orcamento) {
 
                 //Carrega os faturamentos com o orçamento
@@ -366,7 +365,7 @@ class OrcamentoController extends Controller
           $dadosOrcamentos    = Array();
           $dadosProduto       = Array();
 
-          $msg_error  = '';
+          $msg_error          = '';
 
           $orcamento  = DB::select('SELECT
                                     w.Workflow_ID,
@@ -549,10 +548,15 @@ class OrcamentoController extends Controller
                                                           prod.Pagamento_Prestador,
                                                           prod.Descricao_Produto,
                                                           prod.Valor_Venda_Unitario,
-                                                          desp.Descricao_Produto
-                                                            FROM chamados_workflows_produtos prod
-                                                            LEFT JOIN despesas_atendimento desp on desp.Despesa_ID_Relacionado = prod.Workflow_Produto_ID
-                                                            WHERE prod.Workflow_ID = ? AND prod.Situacao_ID = 1',[$chamado->Chamado_ID]);
+                                                          desp.Descricao_Produto as Descricao_Produto_Campo,
+                                                          prodVari.Descricao as Produto_Variacao,
+                                                          prodOrig.Nome as Produto_nome
+                                                          FROM chamados_workflows_produtos prod
+                                                          LEFT JOIN despesas_atendimento desp on desp.Despesa_ID_Relacionado = prod.Workflow_Produto_ID
+                                                          LEFT JOIN produtos_variacoes prodVari on prodVari.Produto_Variacao_ID = prod.Produto_Variacao_ID
+                                                          LEFT JOIN produtos_dados prodOrig on prodVari.Produto_ID = prodOrig.Produto_ID
+                                                          WHERE prod.Workflow_ID = ? AND prod.Situacao_ID = 1',[$chamado->Chamado_ID]);
+
                     if(!empty($produtosChamado)){
 
                       foreach ($produtosChamado as $produto) {

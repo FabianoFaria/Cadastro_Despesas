@@ -134,9 +134,31 @@
 
 					                        					<tr>
 
-						                        					<td>
-						                        						Produto : {{ $produto->Descricao_Produto }}
-						                        					</td>
+						                        					@if(! empty($produto->Descricao_Produto))
+
+						                        						<td>
+							                        						Produto : {{ $produto->Descricao_Produto }}
+							                        					</td>
+
+						                        					@elseif(! empty($produto->Descricao_Produto_Campo))
+
+						                        						<td>
+							                        						Produto : {{ $produto->Descricao_Produto_Campo }}
+							                        					</td>
+
+							                        				@elseif(! empty($produto->Produto_Variacao))
+
+							                        					<td>
+							                        						Produto : {{ $produto->Produto_Variacao }}
+							                        					</td>
+
+							                        				@elseif(! empty($produto->Produto_nome))
+
+							                        					<td>
+							                        						Produto : {{ $produto->Produto_nome }}
+							                        					</td>
+
+						                        					@endif
 
 						                        				</tr>
 
