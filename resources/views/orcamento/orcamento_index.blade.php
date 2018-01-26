@@ -36,9 +36,9 @@
 				                                <th>Número orçamento</th>
 				                                <th>Título</th>
 				                                <th>Status</th>
-				                                <th>Responsável</th>
 				                                <th>Data abertura</th>
 				                                <th>Data Finalizada</th>
+				                                <th>Dias Aberto</th>
 				                            </tr>
 				                        </thead>
 				                        <tbody>
@@ -71,9 +71,7 @@
 				                        			{{ $orcamento['orcamento']->Descr_Tipo }}
 				                        		</td>
 				                        		<td>
-				                        			{{ $orcamento['orcamento']->Nome }}
-				                        		</td>
-				                        		<td>
+				                        			
 				                        			@php
 
 				                        				$data  = $orcamento['orcamento']->Data_Abertura;
@@ -84,6 +82,7 @@
 
 				                        		</td>
 				                        		<td>
+				                        			
 				                        			@if (! empty($orcamento['orcamento']->Data_Finalizado))
 
 					                        			@php
@@ -100,12 +99,48 @@
 
 				                        			@endif
 
+				                        		</td>
+				                        		<td>
+				                        			
+				                        			@if(! empty($orcamento['tempoAberto']))
+
+				                        				@if($orcamento['tempoAberto']['anos'] > 0)
+
+				                        					<p>
+					                        					{{ number_format($orcamento['tempoAberto']['anos'], 0) }} ano(s).
+					                        				</p>
+
+				                        				@endif
+
+				                        				@if($orcamento['tempoAberto']['meses'] > 0)
+
+				                        					<p>
+					                        					{{ number_format($orcamento['tempoAberto']['meses'], 0) }} mese(s).
+					                        				</p>
+
+				                        				@endif
+
+				                        				<p>
+					                        				{{ number_format($orcamento['tempoAberto']['dias'], 0) }} dia(s).
+					                        			</p>
+
+				                        			@else
+
+				                        				<p>
+					                        				Não definido.
+					                        			</p>
+
+				                        			@endif
 				                        			
 				                        		</td>
 				                        	<tr>
 				                        	<tr>
 				                        		<td colspan="2">
-				                        			
+				                        				
+				                        			<p>
+				                        				<b>Responsável:</b>{{ $orcamento['orcamento']->Nome }}
+				                        			</p>
+
 				                        		</td>
 				                        		<td colspan="2">
 

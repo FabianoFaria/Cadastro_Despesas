@@ -15,13 +15,44 @@
 
 					<div class="panel-heading">
 						<p> 
-							Dados do orçamento: {{ $dadosOrcamentos[0]['orcamento']->Workflow_ID }}
+							<b>Dados do orçamento:</b> {{ $dadosOrcamentos[0]['orcamento']->Workflow_ID }}
 						</p>
 						<p>
-							Título: {{ $dadosOrcamentos[0]['orcamento']->Titulo }}
+							<b>Título:</b> {{ $dadosOrcamentos[0]['orcamento']->Titulo }}
 
 							<a href="{{ URL::to('/orcamentos') }}" class="btn btn-primary pull-right">Voltar</a>
 						</p>
+
+						<p>
+							<b>Status:</b> {{ $dadosOrcamentos[0]['orcamento']->Descr_Tipo }}
+						</p>
+
+						<p>
+							<b>Tempo aberto:</b> 
+							@if(! empty($dadosOrcamentos[0]['tempoAberto']))
+
+								@if($dadosOrcamentos[0]['tempoAberto']['anos'] > 0)
+ 					
+					                {{ number_format($dadosOrcamentos[0]['tempoAberto']['anos'], 0) }} ano(s), 	
+
+				                @endif
+
+				                @if($dadosOrcamentos[0]['tempoAberto']['meses'] > 0)
+
+					                {{ number_format($dadosOrcamentos[0]['tempoAberto']['meses'], 0) }} mese(s), 
+
+				                @endif
+
+				                {{ number_format($dadosOrcamentos[0]['tempoAberto']['dias'], 0) }} dia(s).
+
+							@else
+
+								<p>
+					                Não definido.
+					            </p>
+
+							@endif
+						<p>
 
 					</div>
 

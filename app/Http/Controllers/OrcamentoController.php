@@ -66,13 +66,37 @@ class OrcamentoController extends Controller
 
                     //$descricao  = unserialize($orcamento->Tipo_Auxiliar);
 
-                    $parte = substr($temp[1], 1, 7);
+                    $parte        = substr($temp[1], 1, 7);
 
                     //var_dump($temp);
 
                     $corSituacao  = $parte;  
 
                     //'s:7:"#ded1d1";'
+
+                    $dataInicial      = $orcamento->Data_Abertura;
+
+                    if(!empty($orcamento->Data_Finalizado)){
+
+                      $dataFinalizado = $orcamento->Data_Finalizado;
+
+                    }else{
+
+                      $dataFinalizado = date('Y-m-d h:i:s');
+
+                    }
+
+                    $diff       = abs(strtotime($dataInicial) - strtotime($dataFinalizado));
+
+                    $years      = floor($diff / (365*60*60*24));
+                    $months     = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                    $daysOpen   = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+                    $tempoAberto = array( 'anos'  => $years, 
+                                          'meses' => $months,
+                                          'dias'  => $daysOpen);
+
+                    //dd($days);
 
                     //Carregando as propostas contidas no orçamento
 
@@ -305,7 +329,8 @@ class OrcamentoController extends Controller
                 $orcamentoCompleto = array('orcamento'      => $orcamento,
                                             'faturamento'   => $faturamento,
                                             'gastos'        => $gastos,
-                                            'situacaoCor'   => $corSituacao
+                                            'situacaoCor'   => $corSituacao,
+                                            'tempoAberto'   => $tempoAberto 
                                             );  
 
                 array_push($dadosOrcamentos, $orcamentoCompleto);
@@ -315,7 +340,6 @@ class OrcamentoController extends Controller
             //var_dump($faturamento);
             //dd($dadosOrcamentos);
             $dados = array('dadosOrcamentos' => $dadosOrcamentos);
-
 
             return view('orcamento.orcamento_index', $dados);
 
@@ -395,6 +419,29 @@ class OrcamentoController extends Controller
             $parte        = substr($temp[1], 1, 7);
 
             $corSituacao  = $parte; 
+
+            $dataInicial      = $orcamento->Data_Abertura;
+
+                    if(!empty($orcamento->Data_Finalizado)){
+
+                      $dataFinalizado = $orcamento->Data_Finalizado;
+
+                    }else{
+
+                      $dataFinalizado = date('Y-m-d h:i:s');
+
+                    }
+
+                    $diff       = abs(strtotime($dataInicial) - strtotime($dataFinalizado));
+
+                    $years      = floor($diff / (365*60*60*24));
+                    $months     = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                    $daysOpen   = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+                    $tempoAberto = array( 'anos'  => $years, 
+                                          'meses' => $months,
+                                          'dias'  => $daysOpen);
+
 
 
             $propostasOrcamento = DB::select('SELECT op.Proposta_ID,
@@ -615,7 +662,8 @@ class OrcamentoController extends Controller
                                         'faturamento'   => $faturamento,
                                         'gastos'        => $gastos,
                                         'situacaoCor'   => $corSituacao,
-                                        'produtos'      => $dadosProduto
+                                        'produtos'      => $dadosProduto,
+                                        'tempoAberto'   => $tempoAberto
                                       );  
 
             array_push($dadosOrcamentos, $orcamentoCompleto);
